@@ -1,34 +1,16 @@
-// Write code under this line
-"use strict";
+const decrementBtn = document.querySelector('button[data-action="decrement"]');
+const incrementBtn = document.querySelector('button[data-action="increment"]');
+const counter = document.querySelector("#value");
 
-class StringBuilder {
-  constructor(value) {
-    this._value = value;
-  }
-  get value() {
-    return this._value;
-  }
-  append(str) {
-    this._value = this._value + str;
-  }
-  prepend(str) {
-    this._value = str + this._value;
-  }
-  pad(str) {
-    this.append(str);
-    this.prepend(str);
-  }
-}
-console.log(typeof StringBuilder);
-// 'function'
+let counterValue = 0;
+const increment = () => {
+  counterValue = counterValue + 1;
+  return (counter.textContent = counterValue);
+};
 
-const builder = new StringBuilder(".");
-
-builder.append("^");
-console.log(builder.value); // '.^'
-
-builder.prepend("^");
-console.log(builder.value); // '^.^'
-
-builder.pad("=");
-console.log(builder.value); // '=^.^='
+const decrement = () => {
+  counterValue > 0 ? (counterValue = counterValue - 1) : (counterValue = 0);
+  return (counter.textContent = counterValue);
+};
+incrementBtn.addEventListener("click", increment);
+decrementBtn.addEventListener("click", decrement);
